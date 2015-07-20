@@ -35,8 +35,8 @@ public class ZonesController : MonoBehaviour {
 	void Start () {
 
 		zoneControllers = new ZoneController[Zone.size];
-		for (int i=0; i < zoneControllers.Length; i++)
-			zoneControllers[i] = new ZoneController();
+		/*for (int i=0; i < zoneControllers.Length; i++)
+			zoneControllers[i] = new ZoneController();*/
 		zoneControllers [Zone.Error] = null;
 		zoneControllers [Zone.Overview] = OverviewZone;
 		zoneControllers [Zone.Control] = ControlZone;
@@ -58,7 +58,6 @@ public class ZonesController : MonoBehaviour {
 
 	private void UpdateRegions(bool initiatedWithinController) {
 		for (int i = 0; i < Zone.size; i++) {
-			Debug.Log (i);
 			if (zoneControllers[i] != null) {
 				if (i == activeZone) {
 					zoneControllers [i].HideHighlightRegion ();

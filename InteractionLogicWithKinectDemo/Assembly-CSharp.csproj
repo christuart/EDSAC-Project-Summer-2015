@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{3CD0A629-3B62-F389-12BC-A8799AF47BEC}</ProjectGuid>
+	<ProjectGuid>{4614F7E7-173B-B795-0B84-3AF162C69F89}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GestureMechanicsController.cs" />
      <Compile Include="Assets\Scripts\Actions\AcceptChoice.cs" />
      <Compile Include="Assets\Scripts\Actions\HighlightItem.cs" />
      <Compile Include="Assets\Scripts\Actions\LeaveTier.cs" />
@@ -202,7 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{FE4FC24B-17F7-710A-22AE-955C342DF3DF}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{460D5A15-635C-8ED0-8EEF-FBAA1284ACEE}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
