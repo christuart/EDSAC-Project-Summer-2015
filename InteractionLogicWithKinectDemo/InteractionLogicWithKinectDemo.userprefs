@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GestureMechanicsController.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Setup\SetupGameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\ModelRoomGameController.cs" Line="26" Column="1" />
-      <File FileName="Assets\GestureMechanicsController.cs" Line="15" Column="6" />
+      <File FileName="Assets\Scripts\Kinect Floor Mechanics\UserController.cs" Line="36" Column="11" />
+      <File FileName="Assets\GestureMechanicsController.cs" Line="55" Column="1" />
+      <File FileName="Assets\Scripts\Setup\SetupGameController.cs" Line="195" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

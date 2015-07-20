@@ -21,7 +21,7 @@ public class UserController : MonoBehaviour {
 	
 	private bool started = false;
 	private bool quadSuppliedOnInstantiation = false;
-	private bool usingQuadForLocation = false;
+	public bool usingQuadForLocation = false;
 	
 	private KinectManager kinectManager;
 	

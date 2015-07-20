@@ -74,7 +74,14 @@ public class SetupGameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			calibrationPoints = new Vector2[] { new Vector2(0.6950065f,1.96167f), new Vector2(-0.8923265f,2.011135f), new Vector2(-1.026978f,3.05445f), new Vector2(1.254533f,3.204662f) };
+			demoInstructionText.text = "";
+			Application.LoadLevel (postSetupLevelName);
+			progress = calibrationProgress.Left_Calibration;
+		}
+
 		kinectManager = KinectManager.Instance;
 		uint playerID = kinectManager != null ? kinectManager.GetPlayer1ID() : 0;
 
