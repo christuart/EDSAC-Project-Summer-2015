@@ -6,6 +6,6 @@ public class OrbitLeft : UpperRightAction {
 	public ModelRoomGameController gameController;
 
 	public override void Do() {
-		gameController.OrbitLeft ();
+		gameController.OnOrbitLeft ();
 	}
 }

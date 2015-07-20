@@ -15,6 +15,10 @@ public class ModelRoomGameController : MonoBehaviour {
 	public int startViewPointMesh = -1;
 
 	public ZonesController zonesController;
+
+	public GameObject topRightIndicator;
+
+	public UpperRightMenuController menuController;
 	
 	private int currentViewPointMesh;
 	private ViewPointMeshVertex currentVertex;
@@ -70,18 +74,25 @@ public class ModelRoomGameController : MonoBehaviour {
 	}
 
 	/*****************************
-	// PUBLIC GAME METHODS		*/
-	public void OrbitLeft() {
+	// PUBLIC GAME EVENTS		*/
+	public void OnOrbitLeft() {
 		ViewPointMeshGoLeft();
 	}
-	public void OrbitRight() {
+	public void OnOrbitRight() {
 		ViewPointMeshGoRight();
 	}
-	public void OrbitUp() {
+	public void OnOrbitUp() {
 		ViewPointMeshGoUp();
 	}
-	public void OrbitDown() {
+	public void OnOrbitDown() {
 		ViewPointMeshGoDown();
+	}
+	public void OnPointTopRight() {
+		menuController.Enter();
+		topRightIndicator.SetActive(true);
+	}
+	public void OnStopPointingTopRight() {
+		topRightIndicator.SetActive(false);
 	}
 	
 	/*****************************

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GestureMechanicsController : MonoBehaviour {
 
+	public ModelRoomGameController gameController;
 	public Text trackedJointsText;
 
 	private KinectManager km;
@@ -12,16 +13,21 @@ public class GestureMechanicsController : MonoBehaviour {
 	private KinectWrapper.NuiSkeletonPositionIndex centreShoulder = KinectWrapper.NuiSkeletonPositionIndex.ShoulderCenter;
 	private KinectWrapper.NuiSkeletonPositionIndex rightShoulder = KinectWrapper.NuiSkeletonPositionIndex.ShoulderLeft;
 	private KinectWrapper.NuiSkeletonPositionIndex leftShoulder = KinectWrapper.NuiSkeletonPositionIndex.ShoulderRight;
-	private KinectWrapper.NuiSkeletonPositionIndex rightWrist = KinectWrapper.NuiSkeletonPositionIndex.WristLeft;
 	
 	private Vector3 wristVector;
 	private Vector3 shouldersVector;
 	private Vector3 backVector;
+	private Vector2 wristVectorInPlane;
+
+	private bool pointingUpRight = false;
 
 	void Start() {
+
+		// Start off with some nice clean vectors which probably won't be far off what we actually get at the start of the program.
 		wristVector = new Vector3 (0.1f, -1f, 0f);
 		shouldersVector = new Vector3 (1f, 0f, 0f);
 		backVector = new Vector3 (0f, 1f, 0f);
+
 	}
 
 	// Update is called once per frame
@@ -56,14 +62,26 @@ public class GestureMechanicsController : MonoBehaviour {
 				//GramSchmidt Orthonormal Space
 				Vector3 e2 = backVector.normalized;
 				Vector3 e1 = (shouldersVector - Vector3.Dot (shouldersVector,e2) * e2).normalized;
-
-				Vector2 wristVectorInPlane = new Vector2(Vector3.Dot(e1, wristVector), Vector3.Dot(e2, wristVector));
-				if (wristVectorInPlane.y > 0 && wristVectorInPlane.y > (wristVectorInPlane.x / 2f))
-					trackedJointsString += "\nPointing up right: " + Mathf.Rad2Deg * Mathf.Atan2 (wristVectorInPlane.y,wristVectorInPlane.x) + "degrees";
+				
+				wristVectorInPlane = new Vector2(Vector3.Dot(e1, wristVector), Vector3.Dot(e2, wristVector));
 
 			}
 		}
 		trackedJointsText.text = trackedJointsString;
+		CheckPointingTopRight();
 	}
 
+	private void CheckPointingTopRight() {
+		if (!pointingUpRight) {
+			if (wristVectorInPlane.y > 0 && wristVectorInPlane.y > (wristVectorInPlane.x / 2f)) {
+				pointingUpRight = true;
+				gameController.OnPointTopRight();
+			}
+		} else {
+			if (wristVectorInPlane.y <= 0) {
+				pointingUpRight = false;
+				gameController.OnStopPointingTopRight();
+			}
+		}
+	}
 }
