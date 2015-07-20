@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Setup\SetupGameController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\KinectScripts\KinectWrapper.cs">
     <Files>
-      <File FileName="Assets\Scripts\Kinect Floor Mechanics\UserController.cs" Line="36" Column="11" />
-      <File FileName="Assets\GestureMechanicsController.cs" Line="55" Column="1" />
-      <File FileName="Assets\Scripts\Setup\SetupGameController.cs" Line="195" Column="3" />
+      <File FileName="Assets\GestureMechanicsController.cs" Line="57" Column="3" />
+      <File FileName="..\..\..\..\Desktop\Kinect v1 Testing\Assets\OverlayDemo\Scripts\KinectOverlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\KinectScripts\KinectWrapper.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Kinect Floor Mechanics\ZonesController.cs" Line="60" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

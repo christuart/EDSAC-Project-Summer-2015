@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GestureMechanicsController.cs" />
      <Compile Include="Assets\Scripts\Actions\AcceptChoice.cs" />
      <Compile Include="Assets\Scripts\Actions\HighlightItem.cs" />
      <Compile Include="Assets\Scripts\Actions\LeaveTier.cs" />
@@ -61,6 +60,7 @@
      <Compile Include="Assets\Scripts\Actions\Zoom\ZoomOut.cs" />
      <Compile Include="Assets\Scripts\Actions\Zoom\ZoomReset.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\GestureMechanicsController.cs" />
      <Compile Include="Assets\Scripts\HighlightController.cs" />
      <Compile Include="Assets\Scripts\Kinect Floor Mechanics\FloorInputController.cs" />
      <Compile Include="Assets\Scripts\Kinect Floor Mechanics\FloorMechanicsController.cs" />
@@ -102,10 +102,10 @@
      <Compile Include="Assets\Scripts\Upper Right Menu System\UpperRightMenuController.cs" />
      <Compile Include="Assets\Scripts\Upper Right Menu System\UpperRightTierController.cs" />
      <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMesh.cs" />
+     <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMeshCameraController.cs" />
      <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMeshVertex.cs" />
      <Compile Include="Assets\Scripts\Viewport System\ViewportCameraController.cs" />
      <Compile Include="Assets\Scripts\Viewport System\ViewportController.cs" />
-     <Compile Include="Assets\ViewPointMeshCameraController.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

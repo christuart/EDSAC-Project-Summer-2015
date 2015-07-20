@@ -24,6 +24,7 @@ public class GestureMechanicsController : MonoBehaviour {
 		string trackedJointsString = "Tracked Joints:";
 		if (km != null) {
 			if (km.IsUserDetected()) {
+				Debug.Log ("checking joints");
 				uint userId = km.GetPlayer1ID();
 				if(km.IsJointTracked(userId, (int)rightHand))
 					trackedJointsString += "\nRight hand";
@@ -37,6 +38,7 @@ public class GestureMechanicsController : MonoBehaviour {
 					trackedJointsString += "\nCentre shoulder";
 				if(km.IsJointTracked(userId, (int)rightShoulder))
 					trackedJointsString += "\nRight shoulder";
+				Debug.Log ("cone checking joints");
 
 				
 				Vector3 wristVector = km.GetRawSkeletonJointPos(userId, (int)rightWrist) - km.GetRawSkeletonJointPos(userId, (int)rightShoulder);
