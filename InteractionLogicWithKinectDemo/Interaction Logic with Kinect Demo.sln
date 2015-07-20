@@ -1,0 +1,58 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{7D804632-1598-6580-3CB3-96EB73A3385D}") = "Interaction Logic with Kinect Demo", "Assembly-CSharp-firstpass.csproj", "{FE4FC24B-17F7-710A-22AE-955C342DF3DF}"
+EndProject
+Project("{7D804632-1598-6580-3CB3-96EB73A3385D}") = "Interaction Logic with Kinect Demo", "Assembly-CSharp.csproj", "{3CD0A629-3B62-F389-12BC-A8799AF47BEC}"
+EndProject
+Project("{7D804632-1598-6580-3CB3-96EB73A3385D}") = "Interaction Logic with Kinect Demo", "Assembly-CSharp-Editor.csproj", "{51D08B3C-8DB8-AB20-0151-E6AE5EC242E5}"
+EndProject
+Project("{7D804632-1598-6580-3CB3-96EB73A3385D}") = "Interaction Logic with Kinect Demo", "Assembly-UnityScript.unityproj", "{1A81BE7B-0A60-2446-C3C2-40C43ED99E4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE4FC24B-17F7-710A-22AE-955C342DF3DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4FC24B-17F7-710A-22AE-955C342DF3DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4FC24B-17F7-710A-22AE-955C342DF3DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4FC24B-17F7-710A-22AE-955C342DF3DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD0A629-3B62-F389-12BC-A8799AF47BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD0A629-3B62-F389-12BC-A8799AF47BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD0A629-3B62-F389-12BC-A8799AF47BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD0A629-3B62-F389-12BC-A8799AF47BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D08B3C-8DB8-AB20-0151-E6AE5EC242E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D08B3C-8DB8-AB20-0151-E6AE5EC242E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D08B3C-8DB8-AB20-0151-E6AE5EC242E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D08B3C-8DB8-AB20-0151-E6AE5EC242E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A81BE7B-0A60-2446-C3C2-40C43ED99E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A81BE7B-0A60-2446-C3C2-40C43ED99E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A81BE7B-0A60-2446-C3C2-40C43ED99E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A81BE7B-0A60-2446-C3C2-40C43ED99E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+																																																																																								GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.IndentWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
