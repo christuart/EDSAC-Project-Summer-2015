@@ -8,6 +8,7 @@ public class ViewPointMeshCameraController : MonoBehaviour {
 	public ViewPointMeshVertex startingVertex;
 
 	public float slideRate = 0.3f;
+	public float slideThresh = 0.02f;
 
 	private ViewPointMeshVertex vert;
 	
@@ -15,19 +16,23 @@ public class ViewPointMeshCameraController : MonoBehaviour {
 	private Quaternion targetRotation;
 
 	void Start() {
-		if (startingVertex != null) {
+		if (startingVertex != null && vert == null) {
 			GoToVertex(startingVertex);
 		}
 	}
 
 	void Update () {
-		transform.position = Vector3.Lerp(transform.position,targetPosition,slideRate);
-		transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,slideRate);
+		if ((transform.position-targetPosition).magnitude > slideThresh) {
+			transform.position = Vector3.Lerp(transform.position,targetPosition,slideRate);
+			transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,slideRate);
+		}
 	}
 
-	public void GoToVertex(ViewPointMeshVertex vert) {
-		targetPosition = vert.transform.position;
-		targetRotation = vert.transform.rotation;
+	public void GoToVertex(ViewPointMeshVertex target) {
+		vert = target;
+		targetPosition = target.transform.position;
+		targetRotation = target.transform.rotation;
+		Debug.Log ("Going to: " + targetPosition.ToString());
 	}
 
 }

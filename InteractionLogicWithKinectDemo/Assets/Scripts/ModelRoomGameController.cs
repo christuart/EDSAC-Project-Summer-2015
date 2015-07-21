@@ -94,6 +94,7 @@ public class ModelRoomGameController : MonoBehaviour {
 	public void OnStopPointingTopRight() {
 		topRightIndicator.SetActive(false);
 	}
+	//public void OnEnter
 	
 	/*****************************
 	// CAMERA SPLIT				*/

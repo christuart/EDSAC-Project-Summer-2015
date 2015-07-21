@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\InfoCameraIdleMotionController.cs" />
+     <Compile Include="Assets\InfoPanelController.cs" />
      <Compile Include="Assets\Scripts\Actions\AcceptChoice.cs" />
      <Compile Include="Assets\Scripts\Actions\HighlightItem.cs" />
      <Compile Include="Assets\Scripts\Actions\LeaveTier.cs" />
@@ -60,9 +62,9 @@
      <Compile Include="Assets\Scripts\Actions\Zoom\ZoomOut.cs" />
      <Compile Include="Assets\Scripts\Actions\Zoom\ZoomReset.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\GestureMechanicsController.cs" />
      <Compile Include="Assets\Scripts\HighlightController.cs" />
-     <Compile Include="Assets\Scripts\Kinect Floor Mechanics\FloorInputController.cs" />
+     <Compile Include="Assets\Scripts\Input Systems\FloorInputController.cs" />
+     <Compile Include="Assets\Scripts\Input Systems\GestureMechanicsController.cs" />
      <Compile Include="Assets\Scripts\Kinect Floor Mechanics\FloorMechanicsController.cs" />
      <Compile Include="Assets\Scripts\Kinect Floor Mechanics\RegionController.cs" />
      <Compile Include="Assets\Scripts\Kinect Floor Mechanics\UserController.cs" />
@@ -93,6 +95,7 @@
      <Compile Include="Assets\Scripts\Misc\Persistent.cs" />
      <Compile Include="Assets\Scripts\Misc\TextClearOnStart.cs" />
      <Compile Include="Assets\Scripts\Misc\Tools.cs" />
+     <Compile Include="Assets\Scripts\Misc\WorldSpaceUIController.cs" />
      <Compile Include="Assets\Scripts\ModelRoomGameController.cs" />
      <Compile Include="Assets\Scripts\Setup\GestureHandler.cs" />
      <Compile Include="Assets\Scripts\Setup\SetupGameController.cs" />
@@ -102,6 +105,7 @@
      <Compile Include="Assets\Scripts\Upper Right Menu System\UpperRightMenuController.cs" />
      <Compile Include="Assets\Scripts\Upper Right Menu System\UpperRightTierController.cs" />
      <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMesh.cs" />
+     <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMeshBuilder.cs" />
      <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMeshCameraController.cs" />
      <Compile Include="Assets\Scripts\View Point Mesh System\ViewPointMeshVertex.cs" />
      <Compile Include="Assets\Scripts\Viewport System\ViewportCameraController.cs" />
