@@ -17,6 +17,7 @@ public class ViewPointMeshCameraController : MonoBehaviour {
 
 	void Start() {
 		if (startingVertex != null && vert == null) {
+			Debug.Log ("had a starting vertex and vert was null");
 			GoToVertex(startingVertex);
 		}
 	}
@@ -29,10 +30,10 @@ public class ViewPointMeshCameraController : MonoBehaviour {
 	}
 
 	public void GoToVertex(ViewPointMeshVertex target) {
+		Debug.Log ("Setting vert to " + target.transform.position.ToString());
 		vert = target;
 		targetPosition = target.transform.position;
 		targetRotation = target.transform.rotation;
-		Debug.Log ("Going to: " + targetPosition.ToString());
 	}
 
 }

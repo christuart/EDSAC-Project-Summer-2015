@@ -17,7 +17,7 @@ public class WorldSpaceUIController : MonoBehaviour {
 		initialCameraAngle = camera.transform.eulerAngles.y;
 		positionOffset = camera.transform.position - transform.position;
 		initialCameraAngle = Mathf.Atan2(positionOffset.x,positionOffset.z) * Mathf.Rad2Deg;
-		angleOffset = initialAngle - initialCameraAngle;
+		//angleOffset = initialAngle - initialCameraAngle;
 
 	}
 	
@@ -27,7 +27,7 @@ public class WorldSpaceUIController : MonoBehaviour {
 		newEulers.y = camera.transform.eulerAngles.y + angleOffset;
 		positionOffset = camera.transform.position - transform.position;
 		angle = Mathf.Atan2(positionOffset.x,positionOffset.z) * Mathf.Rad2Deg;
-		newEulers.y = angleOffset + angle;
+		//newEulers.y = angleOffset + angle;
 		transform.eulerAngles = newEulers;
 	}
 

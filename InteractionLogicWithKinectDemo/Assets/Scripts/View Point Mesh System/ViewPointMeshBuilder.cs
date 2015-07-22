@@ -3,16 +3,17 @@ using System.Collections;
 
 public class ViewPointMeshBuilder : MonoBehaviour {
 
+	public ModelRoomGameController gameController;
+
 	public GameObject viewPointMeshVertex;
-	public const int levels = 3;
-	public const int columns = 5;
+	public int levels = 3;
+	public int columns = 5;
 	public float angleTheta = 360f; // angle in floor plane
 	public float anglePhiMax = 37f; // angle above horizontal at top level
 	public float anglePhiMin = 10f; // angle above horizontal at bottom level
 	public bool placeColumnAtBothEnds = false; // i.e. |...|...|...| or |..|..|..|...
 	public bool loopAround = true;
 	public bool thetaCentredAtOrigin = false;
-	public bool originIsAtFocus = true; // rather than origin being on the locus of the cameras.
 
 	public bool enterDefaultVertexOnStart = true;
 	public int[] defaultVertex = new int[] {2,3}; // starting at 1,1 and finishing at levels,columns
@@ -20,34 +21,52 @@ public class ViewPointMeshBuilder : MonoBehaviour {
 	public ViewPointMeshCameraController[] targets;
 	
 	private Vector3[,] camPositions;
+	private Quaternion[,] camRotations;
 	private GameObject[,] builtMesh;
+	private ViewPointMeshVertex[,] builtMeshVertices;
 
 	// Use this for initialization
 	void Start () {
 		
 		camPositions = new Vector3[levels,columns];
+		camRotations = new Quaternion[levels,columns];
 		builtMesh = new GameObject[levels,columns];
+		builtMeshVertices = new ViewPointMeshVertex[levels,columns];
 		
 		float phi0 = anglePhiMin;
 		float dPhi = (anglePhiMax-anglePhiMin)/(levels-1);
 		float theta0 = transform.localRotation.eulerAngles.y + (thetaCentredAtOrigin ? -angleTheta/2f : 0f);
 		float dTheta = angleTheta / (placeColumnAtBothEnds ? columns-1 : columns);
-
+		
 		for (int i = 0; i < levels; i++) {
 			for (int j = 0; j < columns; j ++) {
 				camPositions[i,j] = new Vector3(
 					Mathf.Cos (Mathf.Deg2Rad * (theta0 + j*dTheta)) * Mathf.Cos (Mathf.Deg2Rad * (phi0 + i*dPhi)) * transform.localScale.x,
 					Mathf.Sin (Mathf.Deg2Rad * (phi0 + i*dPhi)) * transform.localScale.y,
 					Mathf.Sin (Mathf.Deg2Rad * (theta0 + j*dTheta)) * Mathf.Cos (Mathf.Deg2Rad * (phi0 + i*dPhi)) * transform.localScale.z);
-				builtMesh[i,j] = GameObject.Instantiate(viewPointMeshVertex,transform.position+camPositions[i,j],transform.rotation) as GameObject;
+				camRotations[i,j].eulerAngles = transform.localRotation.eulerAngles + (new Vector3(phi0 + i*dPhi,90f - j*dTheta,0));
+				builtMesh[i,j] = GameObject.Instantiate(viewPointMeshVertex,transform.position+camPositions[i,j],camRotations[i,j]) as GameObject;
+			}
+		}
+		for (int i = 0; i < levels; i++) {
+			for (int j = 0; j < columns; j ++) {
+				builtMeshVertices[i,j] = builtMesh[i,j].GetComponent<ViewPointMeshVertex>();
+				if (i > 0) {
+					builtMeshVertices[i,j].down = builtMeshVertices[i-1,j];
+					builtMeshVertices[i-1,j].up = builtMeshVertices[i,j];
+				}
+				if (j > 0) {
+					builtMeshVertices[i,j].left = builtMeshVertices[i,j-1];
+					builtMeshVertices[i,j-1].right = builtMeshVertices[i,j];
+				}
+			}
+			if (loopAround) {
+				builtMeshVertices[i,0].left = builtMeshVertices[i,columns-1];
+				builtMeshVertices[i,columns-1].right = builtMeshVertices[i,0];
 			}
 		}
 
-		if (enterDefaultVertexOnStart) {
-			foreach( ViewPointMeshCameraController target in targets) {
-				target.GoToVertex(builtMesh[defaultVertex[0]-1,defaultVertex[1]-1].GetComponent<ViewPointMeshVertex>());
-			}
-		}
+		gameController.OnBuildMeshToEnter(this);
 
 	}
 	
@@ -79,7 +98,6 @@ public class ViewPointMeshBuilder : MonoBehaviour {
 
 		for (int i = 0; i < levels; i++) {
 			for (int j = 0; j < columns; j ++) {
-				Gizmos.color = Color.yellow;
 				if (i < levels-1)
 					Gizmos.DrawLine(transform.position+camPositions[i,j],transform.position+camPositions[i+1,j]);
 				if ((j < columns-1) || (loopAround))
@@ -90,6 +108,13 @@ public class ViewPointMeshBuilder : MonoBehaviour {
 			for (int j = 0; j < columns; j ++) {
 				DrawCameraGizmo(camPositions[i,j]);
 			}
+		}
+
+		Gizmos.color = new Color(1f,1f,1f,0.3f);
+
+		int x = levels/2;
+		for (int j = 0; j < columns; j ++) {
+			Gizmos.DrawLine(transform.position,transform.position+camPositions[x,j]);
 		}
 		
 	}
@@ -115,5 +140,13 @@ public class ViewPointMeshBuilder : MonoBehaviour {
 			
 		}
 
+	}
+
+	public ViewPointMeshVertex GetDefaultVertex() {
+		if (enterDefaultVertexOnStart) {
+			return builtMesh[defaultVertex[0]-1,defaultVertex[1]-1].GetComponent<ViewPointMeshVertex>();
+		} else {
+			return transform.parent.GetComponent<ViewPointMesh>().defaultVertex;
+		}
 	}
 }

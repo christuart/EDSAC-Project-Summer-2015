@@ -75,6 +75,12 @@ public class ModelRoomGameController : MonoBehaviour {
 
 	/*****************************
 	// PUBLIC GAME EVENTS		*/
+	public void OnZoomIn() {
+		foreach (GameObject cam in userCameras) cam.GetComponent<CameraController>().ZoomIn();
+	}
+	public void OnZoomOut() {
+		foreach (GameObject cam in userCameras) cam.GetComponent<CameraController>().ZoomOut();
+	}
 	public void OnOrbitLeft() {
 		ViewPointMeshGoLeft();
 	}
@@ -93,6 +99,11 @@ public class ModelRoomGameController : MonoBehaviour {
 	}
 	public void OnStopPointingTopRight() {
 		topRightIndicator.SetActive(false);
+	}
+	public void OnBuildMeshToEnter(ViewPointMeshBuilder meshBuilder) {
+		if (meshBuilder.enterDefaultVertexOnStart) {
+			ActivateViewPointMeshVertex(meshBuilder.GetDefaultVertex());
+		}
 	}
 	//public void OnEnter
 	
@@ -178,7 +189,31 @@ public class ModelRoomGameController : MonoBehaviour {
 	private void ViewPointMeshGoDown() {
 		ActivateViewPointMeshVertex(currentVertex.Down ());
 	}
+	
+	/*****************************
+	// KINECT GESTURES			*/
 
-
+	public void ReceiveGesture(KinectGestures.Gestures gesture) {
+		switch(gesture) {
+		case KinectGestures.Gestures.SwipeLeft:
+			OnOrbitLeft();
+			break;
+		case KinectGestures.Gestures.SwipeRight:
+			OnOrbitRight();
+			break;
+		case KinectGestures.Gestures.SwipeUp:
+			OnOrbitUp();
+			break;
+		case KinectGestures.Gestures.SwipeDown:
+			OnOrbitDown();
+			break;
+		case KinectGestures.Gestures.ZoomIn:
+			OnZoomIn();
+			break;
+		case KinectGestures.Gestures.ZoomOut:
+			OnZoomOut();
+			break;
+		}
+	}
 
 }

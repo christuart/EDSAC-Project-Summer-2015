@@ -99,7 +99,7 @@ public class SetupGameController : MonoBehaviour {
 
 	}
 
-	public void receiveGesture(KinectGestures.Gestures gesture) {
+	public void ReceiveGesture(KinectGestures.Gestures gesture) {
 		switch (progress) {
 		case calibrationProgress.None:
 		case calibrationProgress.One_Done:

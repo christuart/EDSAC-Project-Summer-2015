@@ -18,4 +18,14 @@ public abstract class Tools : MonoBehaviour {
 		}
 	}
 
+	public static int IntPow(int f, int p) {
+		if (p < 0) 
+			return -1;
+		int r = 1;
+		while (p > 0) {
+			r *= f;
+			p--;
+		}
+		return r;
+	}
 }
