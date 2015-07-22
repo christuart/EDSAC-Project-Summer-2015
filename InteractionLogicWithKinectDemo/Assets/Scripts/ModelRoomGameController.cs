@@ -196,16 +196,16 @@ public class ModelRoomGameController : MonoBehaviour {
 	public void ReceiveGesture(KinectGestures.Gestures gesture) {
 		switch(gesture) {
 		case KinectGestures.Gestures.SwipeLeft:
-			OnOrbitLeft();
-			break;
-		case KinectGestures.Gestures.SwipeRight:
 			OnOrbitRight();
 			break;
+		case KinectGestures.Gestures.SwipeRight:
+			OnOrbitLeft();
+			break;
 		case KinectGestures.Gestures.SwipeUp:
-			OnOrbitUp();
+			OnOrbitDown();
 			break;
 		case KinectGestures.Gestures.SwipeDown:
-			OnOrbitDown();
+			OnOrbitUp();
 			break;
 		case KinectGestures.Gestures.ZoomIn:
 			OnZoomIn();

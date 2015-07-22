@@ -9,7 +9,7 @@ public class GestureHandler : MonoBehaviour, KinectGestures.GestureListenerInter
 	public SetupGameController setupGameController;
 	public float timeBetweenContinuousGestures;
 
-	private ModelRoomGameController gameController;
+	public ModelRoomGameController gameController;
 	
 	private bool[] gestureInProgress;
 	private float[] lastGestureTime;
@@ -17,6 +17,7 @@ public class GestureHandler : MonoBehaviour, KinectGestures.GestureListenerInter
 	private Scene currentRoom;
 
 	void Start() {
+		currentRoom = Scene.Setup;
 		gestureInProgress = new bool[Tools.IntPow(2,1+sizeof(KinectGestures.Gestures))];
 		lastGestureTime = new float[Tools.IntPow(2,1+sizeof(KinectGestures.Gestures))];
 		Debug.Log (Tools.IntPow(2,sizeof(KinectGestures.Gestures)));
@@ -34,10 +35,14 @@ public class GestureHandler : MonoBehaviour, KinectGestures.GestureListenerInter
 			currentRoom = Scene.Setup;
 			break;
 		case "ModelRoomWithViewportSystem":
+			foreach (GameObject controller in GameObject.FindGameObjectsWithTag("GameController")) {
+				if (controller.GetComponent<ModelRoomGameController>() != null)
+					gameController = controller.GetComponent<ModelRoomGameController>();
+			}
 			currentRoom = Scene.Model_Room;
-			gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ModelRoomGameController>();
 			break;
 		default:
+			Debug.Log ("Room not found...");
 			currentRoom = Scene.None;
 			break;
 		}
@@ -54,27 +59,30 @@ public class GestureHandler : MonoBehaviour, KinectGestures.GestureListenerInter
 	
 	public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, 
 	                              float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos) {
-		if (!gestureInProgress[(int)gesture] || Time.time - lastGestureTime[(int)gesture] >= timeBetweenContinuousGestures) {
-			gestureInProgress[(int)gesture] = true;
-			lastGestureTime[(int)gesture] = Time.time;
-			switch (currentRoom) {
-			case Scene.Setup:
-				currentRoom = Scene.Setup;
-				setupGameController.ReceiveGesture (gesture);
-				break;
-			case Scene.Model_Room:
-				currentRoom = Scene.Model_Room;
-				gameController.ReceiveGesture (gesture);
-				break;
+		if (GestureIsContinuous(gesture) && progress > 0.3f) {
+			if (!gestureInProgress[(int)gesture] || Time.time - lastGestureTime[(int)gesture] >= timeBetweenContinuousGestures) {
+				gestureInProgress[(int)gesture] = true;
+				lastGestureTime[(int)gesture] = Time.time;
+				switch (currentRoom) {
+				case Scene.Setup:
+					currentRoom = Scene.Setup;
+					setupGameController.ReceiveGesture (gesture);
+					break;
+				case Scene.Model_Room:
+					currentRoom = Scene.Model_Room;
+					gameController.ReceiveGesture (gesture);
+					break;
+				}
 			}
 		}
-
 	}
 
 	public bool GestureCompleted (uint userId, int userIndex, KinectGestures.Gestures gesture, 
 	                              KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos) {
+		Debug.Log ("A gesture!");
 		switch (currentRoom) {
 		case Scene.Setup:
+			Debug.Log ("A gesture in setup no less.");
 			currentRoom = Scene.Setup;
 			setupGameController.ReceiveGesture (gesture);
 			break;
@@ -90,5 +98,11 @@ public class GestureHandler : MonoBehaviour, KinectGestures.GestureListenerInter
 	                              KinectWrapper.NuiSkeletonPositionIndex joint) {
 		gestureInProgress[(int)gesture] = false;
 		return true;
+	}
+
+	private bool GestureIsContinuous(KinectGestures.Gestures gesture) {
+		return
+			gesture == KinectGestures.Gestures.ZoomIn ||
+			gesture == KinectGestures.Gestures.ZoomOut;
 	}
 }
